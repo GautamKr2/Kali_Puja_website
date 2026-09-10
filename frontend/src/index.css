@@ -1,8 +1,12 @@
 @import "tailwindcss";
 
+@layer components {
+  .nav-link {
+    @apply text-amber-50 font-semibold hover:text-amber-200;
+  }
+}
+
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
 }
 
