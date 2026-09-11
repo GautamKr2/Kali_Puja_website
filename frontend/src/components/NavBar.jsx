@@ -6,7 +6,7 @@ export default function NavBar() {
 
     return (
         <>
-            <nav className="mt-3 md:mt-8 h-8 md:h-12 flex justify-center items-center bg-[#f7b398] text-center shadow-lg">
+            <nav className="mt-3 md:mt-4 h-8 md:h-12 flex justify-center items-center bg-[#f7b398] text-center shadow-lg">
             
                 <div className="hidden md:flex gap-16 mr-6">
                     <Link to="/" className="nav-link"> Home </Link>
