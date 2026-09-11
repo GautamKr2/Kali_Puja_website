@@ -6,13 +6,9 @@ export default function NavBar() {
 
     return (
         <>
-            <nav className="absolute left-1/2 -translate-x-1/2 mt-5 md:mt-8 w-[96%] h-10 md:h-16 flex justify-between items-center bg-red-700 border-[1px] md:border-[1.6px] border-solid border-red-700 rounded-lg text-center">
+            <nav className="mt-3 md:mt-8 h-8 md:h-12 flex justify-center items-center bg-[#f7b398] text-center shadow-lg">
             
-                <div className="ml-3 md:ml-5">
-                    <img src="/src/assets/logo.png" alt="Logo" className="size-14 md:size-24 rounded-full" />
-                </div>
-
-                <div className="hidden md:flex gap-8 mr-6">
+                <div className="hidden md:flex gap-16 mr-6">
                     <Link to="/" className="nav-link"> Home </Link>
                     <Link to="/about" className="nav-link"> About </Link>
                     <Link to="/members" className="nav-link"> Members </Link>
@@ -20,12 +16,12 @@ export default function NavBar() {
                     <Link to="/contact" className="nav-link"> Contact </Link>
                 </div>
 
-                <button className="mr-5 md:hidden text-2xl" onClick={() => setMenuOpen(!menuOpen)}> ☰ </button>
+                <button className="mr-5 md:hidden text-[20px]" onClick={() => setMenuOpen(!menuOpen)}> ☰ </button>
 
                 {/* Mobile Menu */}
                 {
                     menuOpen && (
-                        <div className="absolute top-full right-0 w-1/2 flex flex-col bg-red-600 rounded-lg py-4 gap-4">
+                        <div className="w-1/3 flex flex-col bg-[#f7a788] rounded-xl py-3 gap-2 absolute top-17 right-4 mr-3 md:hidden shadow-lg">
                             <Link to="/" className="nav-link">Home</Link>
                             <Link to="/about" className="nav-link">About</Link>
                             <Link to="/members" className="nav-link">Members</Link>
