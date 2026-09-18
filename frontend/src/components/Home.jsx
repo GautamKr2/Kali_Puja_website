@@ -1,4 +1,5 @@
 import About from "./About";
+import Gallery from "./Gallery";
 import Members from "./Members";
 
 export default function Home() {
@@ -10,7 +11,7 @@ export default function Home() {
 
             <About />
             <Members />
-            <h1>Gallery Page</h1>
+            <Gallery />
             <h1>Contact Page</h1>
         </>
     )

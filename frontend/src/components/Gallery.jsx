@@ -1,7 +1,5 @@
-import { useState } from "react"
-
-export default function() {
-    const members = [
+export default function Gallery() {
+    const gallery = [
         {
             id: 1,
             name: "Gautam Kumar",
@@ -70,38 +68,19 @@ export default function() {
         }
     ]
 
-    const [showAll, setShowAll] = useState(false);
-    const visibleMembers = showAll
-        ? members
-        : members.slice(0, 8)
-
     return (
         <>
             <section className="bg-[#f7b398] m-2 md:m-6 md:mx-[12%] rounded-md">
-                <h1 className="text-center text-xl md:text-4xl text-[#f9720bef] font-bold mt-4 md:m-4 pt-2 md:pt-4"> Executive Members </h1>
-                <div className="m-2 md:mx-4 grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 pb-3 md:pb-4">
+                <h1 className="text-center pt-3 md:pt-6 text-xl md:text-4xl text-[#f9720bef] font-bold"> Gallery/Videos </h1>
+                <div className="m-2 md:m-6 grid grid-cols-2 md:grid-cols-4 gap-4">
                     {
-                        visibleMembers.map((member) => (
-                            <div key={member.id} className=" bg-[#f3c6b4] rounded-lg shadow-md pt-2">
-                                <img src={member.image} alt={`${member.name} profile`} className="mx-auto size-32 md:size-48 rounded-md mt-2 md:mt-4 object-cover" />
-                                <div className="text-center m-2">
-                                    <h3 className="text-[12px] md:text-[16px] text-[#2f2f2f] font-bold"> {member.name} </h3>
-                                    <p className="text-[11px] md:text-[13px]  text-red-700"> {member.role} </p>
-                                </div>
+                        gallery.map((image) => (
+                            <div key={image.id} className="bg-[#f3c6b4] rounded-md">
+                                <img src={image.image} className="size-36 md:size-50 mx-auto my-3 md:my-4 object-cover" />
                             </div>
                         ))
                     }
                 </div>
-                {
-                    members.length > 8 && (
-                        <div className="text-center text-xl  mx-auto pb-3">
-                            <button onClick={() => setShowAll(!showAll)}
-                                className="bg-[#f3c6b4] text-[#f9720bef] font-semibold cursor-pointer px-7 py-1 rounded-md hover:bg-[#fa9e79]">
-                                {showAll ? "Show Less" : "Show All"}
-                            </button>
-                        </div>
-                    )
-                }
             </section>
         </>
     )
