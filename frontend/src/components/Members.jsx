@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 export default function() {
     const members = [
@@ -21,49 +21,49 @@ export default function() {
             role: "President"
         },
         {
-            id: 2,
+            id: 4,
             name: "Gautam Kumar",
             image: "/kali_img.jpeg",
             role: "President"
         },
         {
-            id: 2,
+            id: 5,
             name: "Gautam Kumar",
             image: "/kali_img.jpeg",
             role: "President"
         },
         {
-            id: 2,
+            id: 6,
             name: "Gautam Kumar",
             image: "/kali_img.jpeg",
             role: "President"
         },
         {
-            id: 2,
+            id: 7,
             name: "Gautam Kumar",
             image: "/kali_img.jpeg",
             role: "President"
         },
         {
-            id: 2,
+            id: 8,
             name: "Gautam Kumar",
             image: "/kali_img.jpeg",
             role: "President"
         },
         {
-            id: 2,
+            id: 9,
             name: "Gautam Kumar",
             image: "/kali_img.jpeg",
             role: "President"
         },
         {
-            id: 2,
+            id: 10,
             name: "Gautam Kumar",
             image: "/kali_img.jpeg",
             role: "President"
         },
         {
-            id: 2,
+            id: 11,
             name: "Gautam Kumar",
             image: "/kali_img.jpeg",
             role: "President"
@@ -71,9 +71,11 @@ export default function() {
     ]
 
     const [showAll, setShowAll] = useState(false);
+    const isMobile = window.innerWidth < 768;
+
     const visibleMembers = showAll
         ? members
-        : members.slice(0, 8)
+        : members.slice(0, isMobile ? 6 : 8)
 
     return (
         <>
@@ -82,8 +84,8 @@ export default function() {
                 <div className="m-2 md:mx-4 grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 pb-3 md:pb-4">
                     {
                         visibleMembers.map((member) => (
-                            <div key={member.id} className=" bg-[#f3c6b4] rounded-lg shadow-md pt-2">
-                                <img src={member.image} alt={`${member.name} profile`} className="mx-auto size-32 md:size-48 rounded-md mt-2 md:mt-4 object-cover" />
+                            <div key={member.id} className=" bg-[#f3c6b4] rounded-lg shadow-md pt-1">
+                                <img src={member.image} alt={`${member.name} profile`} className="mx-auto size-24 md:size-48 rounded-md mt-2 md:mt-4 object-cover" />
                                 <div className="text-center m-2">
                                     <h3 className="text-[12px] md:text-[16px] text-[#2f2f2f] font-bold"> {member.name} </h3>
                                     <p className="text-[11px] md:text-[13px]  text-red-700"> {member.role} </p>
@@ -94,7 +96,7 @@ export default function() {
                 </div>
                 {
                     members.length > 8 && (
-                        <div className="text-center text-xl  mx-auto pb-3">
+                        <div className="text-center text-md md:text-xl  mx-auto pb-3">
                             <button onClick={() => setShowAll(!showAll)}
                                 className="bg-[#f3c6b4] text-[#f9720bef] font-semibold cursor-pointer px-7 py-1 rounded-md hover:bg-[#fa9e79]">
                                 {showAll ? "Show Less" : "Show All"}

@@ -21,49 +21,49 @@ export default function Gallery() {
             role: "President"
         },
         {
-            id: 2,
+            id: 4,
             name: "Gautam Kumar",
             image: "/kali_img.jpeg",
             role: "President"
         },
         {
-            id: 2,
+            id: 5,
             name: "Gautam Kumar",
             image: "/kali_img.jpeg",
             role: "President"
         },
         {
-            id: 2,
+            id: 6,
             name: "Gautam Kumar",
             image: "/kali_img.jpeg",
             role: "President"
         },
         {
-            id: 2,
+            id: 7,
             name: "Gautam Kumar",
             image: "/kali_img.jpeg",
             role: "President"
         },
         {
-            id: 2,
+            id: 8,
             name: "Gautam Kumar",
             image: "/kali_img.jpeg",
             role: "President"
         },
         {
-            id: 2,
+            id: 9,
             name: "Gautam Kumar",
             image: "/kali_img.jpeg",
             role: "President"
         },
         {
-            id: 2,
+            id: 10,
             name: "Gautam Kumar",
             image: "/kali_img.jpeg",
             role: "President"
         },
         {
-            id: 2,
+            id: 11,
             name: "Gautam Kumar",
             image: "/kali_img.jpeg",
             role: "President"
@@ -71,9 +71,12 @@ export default function Gallery() {
     ]
 
     const [showAll, setShowAll] = useState(false);
+     const isMobile = window.innerWidth < 768;
+    
+
     const visibleImages = showAll
         ? gallery
-        : gallery.slice(0, 8)
+        : gallery.slice(0, isMobile ? 6 : 8)
 
     return (
         <>
@@ -83,7 +86,7 @@ export default function Gallery() {
                     {
                         visibleImages.map((image) => (
                             <div key={image.id} className="bg-[#f3c6b4] rounded-md">
-                                <img src={image.image} className="size-36 md:size-50 mx-auto my-3 md:my-4 object-cover" />
+                                <img src={image.image} className="size-25 md:size-50 mx-auto my-2 md:my-4 object-cover" />
                             </div>
                         ))
                     }
@@ -91,7 +94,7 @@ export default function Gallery() {
 
                 {
                     gallery.length > 8 && (
-                        <div className="text-center text-xl mx-auto pb-3">
+                        <div className="text-center text-md md:text-xl mx-auto pb-3">
                             <button onClick={() => setShowAll(!showAll)}
                                 className="bg-[#f3c6b4] text-[#f9720bef] font-semibold px-7 py-1 cursor-pointer rounded-lg hover:bg-[#fa9e79]">
                                 {showAll ? "Show less images" : "Show more images"}

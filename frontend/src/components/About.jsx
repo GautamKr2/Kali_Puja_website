@@ -6,7 +6,7 @@ export default function About() {
 
                 <p>We install the idol of <b>Maa Kali</b> at Kali Asthan, Sarbahda on the occassion of Ashwin Dussehra. Also we celebrate it with great enthusiasm and joy every year on Ashwin Dussehra. We take out a <b>Kalash Yatra</b> every year on first day of Navratri. </p>
 
-                <p><pre></pre> This samiti is enaugrated on 2025 on <b>prathma tithi of Shukla Paksh, 2025 Dussehra</b>. </p>
+                <p> This samiti is enaugrated on 2025 on <b>prathma tithi of Shukla Paksh, 2025 Dussehra</b>. </p>
             </div>
         </>
     )
