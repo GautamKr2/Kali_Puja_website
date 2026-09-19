@@ -13,7 +13,7 @@ export default function NavBar() {
                     <Link to="/about" className="nav-link"> About </Link>
                     <Link to="/members" className="nav-link"> Members </Link>
                     <Link to="/gallery" className="nav-link"> Gallery </Link>
-                    <Link to="/contact" className="nav-link"> Contact </Link>
+                    <Link to="/contact" className="nav-link"> Contact Us </Link>
                 </div>
 
                 <button className="mr-5 md:hidden text-[20px]" onClick={() => setMenuOpen(!menuOpen)}> ☰ </button>

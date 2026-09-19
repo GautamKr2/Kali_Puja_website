@@ -1,4 +1,5 @@
 import About from "./About";
+import Contact from "./Contact";
 import Gallery from "./Gallery";
 import Members from "./Members";
 
@@ -12,7 +13,7 @@ export default function Home() {
             <About />
             <Members />
             <Gallery />
-            <h1>Contact Page</h1>
+            <Contact />
         </>
     )
 }
