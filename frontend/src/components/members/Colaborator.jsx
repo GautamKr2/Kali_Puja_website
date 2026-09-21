@@ -1,23 +1,30 @@
 import { Link } from "react-router-dom";
 import "../../App.css";
+import { useState } from "react";
 
 export default function Collaborator() {
+    const [clbrData, setCobrData] = useState();
+
+    function handleCollabForm() {
+
+    }
+
     return (
         <>
             <div className="container">
                 <h1> Add collaborator </h1>
-                <form>
+                <form onSubmit={handleCollabForm}>
                     <label htmlFor="name"> Name: </label>
-                    <input type="text" placeholder="Enter name" id="name" />
+                    <input type="text" placeholder="Enter name" name="name" id="name" onChange={(ev) => setCobrData({...clbrData, name: ev.target.value})} />
 
                     <label htmlFor="address"> Address: </label>
-                    <input type="text" placeholder="Enter address" id="address" />
+                    <input type="text" placeholder="Enter address" name="address" id="address" onChange={(ev) => setCobrData({...clbrData, address: ev.target.value})} />
 
                     <label htmlFor="phone"> Mobile number: </label>
-                    <input type="text" placeholder="Enter mobile number" id="phone" />
+                    <input type="text" placeholder="Enter mobile number" name="phone" id="phone" onChange={(ev) => setCobrData({...clbrData, phone: ev.target.value})} />
 
                     <label htmlFor="amount"> Amount: </label>
-                    <input type="text" placeholder="Enter amount" id="amount" />
+                    <input type="text" placeholder="Enter amount" name="amount" id="amount" onChange={(ev) => setCobrData({...clbrData, amount: ev.target.value})} />
 
                     <button type="submit"> Add collaborator </button>
                 </form>

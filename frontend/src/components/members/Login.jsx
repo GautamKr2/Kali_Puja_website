@@ -1,20 +1,27 @@
 import { Link } from "react-router-dom";
 import "../../App.css";
+import { useState } from "react";
 
 export default function Login() {
+    const [memberData, setMemberData] = useState();
+
+    function handleLoginForm() {
+
+    }
+
     return (
         <>
             <div className="container">
                 <h1> Login </h1>
-                <form>
+                <form onSubmit={handleLoginForm}>
                     <label htmlFor="phone"> Phone: </label>
-                    <input type="text" placeholder="Enter your mobile number" id="phone" />
+                    <input type="text" placeholder="Enter your mobile number" name="phone" id="phone" onChange={(ev) => setMemberData({...memberData, phone: ev.target.value})} />
 
                     <label htmlFor="username"> Username: </label>
-                    <input type="text" placeholder="Enter username" id="username" />
+                    <input type="text" placeholder="Enter username" name="username" id="username" onChange={(ev) => setMemberData({...memberData, username: ev.target.value})} />
 
                     <label htmlFor="password"> Enter password: </label>
-                    <input type="text" placeholder="Enter your password" id="password" />
+                    <input type="text" placeholder="Enter your password" name="password" id="password" onChange={(ev) => setMemberData({...memberData, password: ev.target.value})} />
 
                     <button type="submit"> Login </button>
                 </form>
