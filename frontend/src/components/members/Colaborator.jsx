@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "../../App.css";
 
 export default function Collaborator() {
@@ -20,6 +21,7 @@ export default function Collaborator() {
 
                     <button type="submit"> Add collaborator </button>
                 </form>
+                <Link to="/" className="home-link"> Go to Home </Link>
             </div>
         </>
     )

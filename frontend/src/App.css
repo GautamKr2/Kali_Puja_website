@@ -53,14 +53,88 @@
     background-color: rgb(242, 120, 43);
 }
 
-.container .link {
-    width: 100%;
-    text-align: center;
-    margin-top: 12px;
-    font-size: 18px;
+.link-container {
+    display: flex;
+    align-items: center;
+    margin-top: 14px;
+    gap: 8px;
+}
+
+.link-container .link-text {
+    font-size: 14px;
+}
+
+.link-container .link {
+    font-size: 16px;
     color: blue
 }
 
-.container .link:hover {
+.link-container .link:hover {
     text-decoration: underline;
+}
+
+.home-link {
+    display: block;
+    text-align: center;
+    margin-top: 12px;
+    color: blue;
+}
+
+.home-link:hover {
+    text-decoration: underline;
+}
+
+
+
+/* For mobile like small screen */
+@media(max-width: 520px) {
+    .container {
+        max-width: 268px;
+        margin: 20px auto;
+        padding: 14px;
+    }
+
+    .container h1 {
+        font-size: 18px;
+        margin-bottom: 8px;
+    }
+
+    .container label {
+        font-size: 12px;
+        margin-bottom: 4px;
+    }
+
+    .container input {
+        padding: 4px 5px;
+        margin-bottom: 14px;
+        border: 1.6px solid #f2c1a3;
+        font-size: 10px;
+    }
+
+    .container input:focus {
+        outline: 1.6px solid #f17b31;
+    }
+
+    .container button {
+        font-size: 12px;
+        font-weight: 600;
+        padding: 4px 0;
+        margin-top: 4px;
+    }
+
+    .link-container {
+        margin-top: 10px;
+        gap: 6px;
+    }
+    .link-container .link-text {
+        font-size: 10px;
+    }
+    .link-container .link {
+        font-size: 12px;
+    }
+
+    .home-link {
+        margin-top: 8px;
+        font-size: 12px;
+    }
 }

@@ -18,7 +18,10 @@ export default function Login() {
 
                     <button type="submit"> Login </button>
                 </form>
-                <Link to="/signup" className="link"> Signup </Link>
+                <div className="link-container">
+                    <p className="link-text"> For new user, click for sign up: </p>
+                    <Link to="/signup" className="link"> Click here </Link>
+                </div>
             </div>
         </>
     )
