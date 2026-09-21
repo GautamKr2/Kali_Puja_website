@@ -52,3 +52,15 @@
 .container button:hover {
     background-color: rgb(242, 120, 43);
 }
+
+.container .link {
+    width: 100%;
+    text-align: center;
+    margin-top: 12px;
+    font-size: 18px;
+    color: blue
+}
+
+.container .link:hover {
+    text-decoration: underline;
+}
