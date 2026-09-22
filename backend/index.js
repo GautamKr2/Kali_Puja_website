@@ -11,7 +11,7 @@ app.get("/members", async (req, resp) => {
     const collection = db.collection(collectionName);
     const result = await collection.find().toArray();
     if(result) {
-        resp.send({success: true, message: "Data fetched", result});
+        resp.send({success: true, message: "Data fetched", list: result});
     }
     else {
         resp.send({success: false, message: "Data not fetched"})

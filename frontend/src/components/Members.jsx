@@ -77,23 +77,29 @@ export default function() {
         ? members
         : members.slice(0, isMobile ? 6 : 8)
 
-    const [member, setMember] = useState();
+    const [member, setMember] = useState([]);
     useEffect(() => {
         getMembers()
     }, [])
     async function getMembers() {
-        let memberList = await fetch("/members");
+        let memberList = await fetch("http://localhost:3200/members");
         console.log("Data before converting json")
         memberList = await memberList.json();
-        console.log("Data after converting json")
+        // console.log("Data after converting json", memberList.list)
         if(memberList.success) {
             setMember(memberList.list);
-            console.log(member);
+            
         }
         else {
             console.log("Data not fetched")
         }
     }
+    
+    useEffect(() => {
+        if(member.length > 0) {
+            console.log(member[0].name);
+        }
+    })
 
     return (
         <>
