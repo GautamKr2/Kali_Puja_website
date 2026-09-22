@@ -77,6 +77,24 @@ export default function() {
         ? members
         : members.slice(0, isMobile ? 6 : 8)
 
+    const [member, setMember] = useState();
+    useEffect(() => {
+        getMembers()
+    }, [])
+    async function getMembers() {
+        let memberList = await fetch("/members");
+        console.log("Data before converting json")
+        memberList = await memberList.json();
+        console.log("Data after converting json")
+        if(memberList.success) {
+            setMember(memberList.list);
+            console.log(member);
+        }
+        else {
+            console.log("Data not fetched")
+        }
+    }
+
     return (
         <>
             <section className="bg-[#f7b398] m-2 md:m-6 md:mx-[12%] rounded-md">
