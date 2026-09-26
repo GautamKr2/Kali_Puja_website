@@ -19,7 +19,7 @@ export default function Signup() {
         resp = await resp.json();
         if(resp.success) {
             console.log("SignUp successful")
-            navigate("/login")
+            navigate("/collab")
         }
         else {
             console.log("SignUp failed")

@@ -15,7 +15,8 @@ export default function Login() {
             body: JSON.stringify(memberData),
             headers: {
                 "Content-Type": "Application/json"
-            }
+            },
+            credentials: 'include'
         })
         response = await response.json();
         if(response.message != "missing") {

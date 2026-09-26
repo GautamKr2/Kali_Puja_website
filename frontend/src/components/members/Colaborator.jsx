@@ -1,9 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../../App.css";
 import { useState } from "react";
 
 export default function Collaborator() {
     const [clbrData, setCobrData] = useState();
+    const navigate = useNavigate();
 
     async function handleCollabForm(event) {
         event.preventDefault();
@@ -12,14 +13,16 @@ export default function Collaborator() {
             body: JSON.stringify(clbrData),
             headers: {
                 "Content-Type": "Application/json"
-            }
+            },
+            credentials: "include"
         })
         resp = await resp.json();
         if(resp.success) {
             console.log("Data stored")
+            navigate("/collab")
         }
         else {
-            console.log("Data not stored")
+            console.log("Data not stored", resp)
         }
     }
 
