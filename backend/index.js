@@ -113,7 +113,7 @@ app.post("/login", async (req, resp) => {
                         sameSite: 'lax',
                         maxAge: 3 * 24 * 60 * 60 * 1000
                     })
-                    resp.send({success: true, message: "Login successful", token})
+                    resp.send({success: true, message: "Login successful", name: result.name});
                 }
             })
         }

@@ -21,6 +21,7 @@ export default function Login() {
         response = await response.json();
         if(response.message != "missing") {
             if(response.success) {
+                localStorage.setItem("name", response.name);
                 console.log("Login successful")
                 navigate("/collab");
             }

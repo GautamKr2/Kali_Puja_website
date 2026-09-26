@@ -14,10 +14,12 @@ export default function Signup() {
             body: JSON.stringify(memberData),
             headers: {
                 "Content-Type": "Application/json"
-            }
+            },
+            credentials: "include"
         })
         resp = await resp.json();
         if(resp.success) {
+            localStorage.setItem("name", memberData.name);
             console.log("SignUp successful")
             navigate("/collab")
         }

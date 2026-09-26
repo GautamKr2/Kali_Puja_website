@@ -8,9 +8,21 @@ export default function Collaborator() {
 
     async function handleCollabForm(event) {
         event.preventDefault();
+        const date = new Date().toDateString("en-IN", {
+            timeZone: "Asia/Kolkata"
+        })
+        const time = new Date().toTimeString("en-IN", {
+            timeZone: "Asia/Kolkata"
+        })
+        const dataToSend = {
+            ...clbrData,
+            takenBy: localStorage.getItem("name"),
+            date: date,
+            time: time
+        }
         let resp = await fetch(`${import.meta.env.VITE_API_URL}/add-collab`, {
             method: "post",
-            body: JSON.stringify(clbrData),
+            body: JSON.stringify(dataToSend),
             headers: {
                 "Content-Type": "Application/json"
             },
