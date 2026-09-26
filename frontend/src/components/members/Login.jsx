@@ -1,12 +1,30 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../../App.css";
 import { useState } from "react";
 
 export default function Login() {
     const [memberData, setMemberData] = useState();
+    const navigate = useNavigate();
 
-    function handleLoginForm() {
-
+    async function handleLoginForm(event) {
+        event.preventDefault();
+        let response = await fetch(`${import.meta.env.VITE_API_URL}/login`, {
+            method: "post",
+            body: JSON.stringify(memberData),
+            headers: {
+                "Content-Type": "Application/json"
+            }
+        })
+        response = await response.json();
+        if(response.success) {
+            console.log("Login successful")
+            navigate("/collab");
+        }
+        else {
+            console.log("Login failed")
+            alert("Login failed");
+            navigate("/login")
+        }
     }
 
     return (

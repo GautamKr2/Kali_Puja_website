@@ -1,12 +1,29 @@
 import { useState } from "react";
 import "../../App.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Signup() {
     const [memberData, setMemberData] = useState();
+    const navigate = useNavigate();
 
-    function handleSignupForm() {
-
+    async function handleSignupForm(event) {
+        event.preventDefault();
+        let resp = await fetch(`${import.meta.env.VITE_API_URL}/signup`, {
+            method: "post",
+            body: JSON.stringify(memberData),
+            headers: {
+                "Content-Type": "Application/json"
+            }
+        })
+        resp = await resp.json();
+        if(resp.success) {
+            console.log("SignIn successful")
+            navigate("/login")
+        }
+        else {
+            console.log("SignIn failed")
+            navigate("signup");
+        }
     }
 
     return (

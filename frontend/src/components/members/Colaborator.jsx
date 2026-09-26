@@ -5,8 +5,22 @@ import { useState } from "react";
 export default function Collaborator() {
     const [clbrData, setCobrData] = useState();
 
-    function handleCollabForm() {
-
+    async function handleCollabForm(event) {
+        event.preventDefault();
+        let resp = await fetch(`${import.meta.env.VITE_API_URL}/add-collab`, {
+            method: "post",
+            body: JSON.stringify(clbrData),
+            headers: {
+                "Content-Type": "Application/json"
+            }
+        })
+        resp = await resp.json();
+        if(resp.success) {
+            console.log("Data stored")
+        }
+        else {
+            console.log("Data not stored")
+        }
     }
 
     return (

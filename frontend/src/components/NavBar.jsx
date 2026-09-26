@@ -1,8 +1,22 @@
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 export default function NavBar() {
     const [menuOpen, setMenuOpen] = useState(false);
+    const [select, setSelect] = useState("user");
+    const navigate = useNavigate();
+    
+    /*useEffect(() => {
+        if(select == "member") {
+            navigate("/login")
+        }
+        else if(select == "admin") {
+            navigate("/add-member")
+        }
+        else {
+            navigate("/")
+        }
+    }, [])*/
 
     return (
         <>
@@ -15,6 +29,11 @@ export default function NavBar() {
                     <Link to="/gallery" className="nav-link"> Gallery </Link>
                     <Link to="/contact" className="nav-link"> Contact Us </Link>
                 </div>
+
+                <select className="absolute right-2 md:right-10 text-[#413e35] border-[1.5px] md:border-2 border-[#f47813] rounded-md px-3 py-[1px] md:py-1 hover:bg-[#f99159]" onChange={(ev) => setSelect(ev.target.value)}>
+                    <option className="bg-[#f7b398]" name="user" value="user"> User </option>
+                    <option className="bg-[#f7b398]" name="member" value="member"> Member </option>
+                </select>
 
                 <button className="mr-5 md:hidden text-[20px]" onClick={() => setMenuOpen(!menuOpen)}> ☰ </button>
 
