@@ -37,31 +37,55 @@ app.post("/add-collab", async (req, resp) => {
 
 app.post("/signup", async (req, resp) => {
     const mbrData = req.body;
-    const loginMemColl = process.env.loginMemColl;
-    const db = await connection();
-    const collection = db.collection(loginMemColl);
-    const response = await collection.insertOne(mbrData);
-    if(response.acknowledged) {
-        resp.send({success: true, message: "SignIn successful", response})
+    if(mbrData.name && mbrData.phone && mbrData.username && mbrData.password && mbrData.cnf_password) {
+        const db = await connection();
+        const memberColl = process.env.memberColl;
+        const coll = db.collection(memberColl);
+        const result = await coll.findOne({phone: mbrData.phone});
+
+        if(result) {
+            if(mbrData.password === mbrData.cnf_password) {
+                const loginMemColl = process.env.loginMemColl;
+                const collection = db.collection(loginMemColl);
+                const response = await collection.insertOne(mbrData);
+                if(response.acknowledged) {
+                    resp.send({success: true, message: "SignUp successful", response})
+                }
+                else {
+                    resp.send({success: false, message: "SignUnp failed"});
+                }
+            }
+            else {
+                resp.send({success: false, message: "cnf_pass_fld"});
+            }
+        }
+        else {
+            resp.send({success: false, message: "not_member"});
+        }
     }
     else {
-        resp.send({success: false, message: "SignIn failed"});
+        resp.send({success: false, message: "missing"});
     }
 })
 
 app.post("/login", async (req, resp) => {
     const memData = req.body;
-    const loginMemColl = process.env.loginMemColl;
-    const db = await connection();
-    const collection = db.collection(loginMemColl);
-    const result = await collection.findOne({phone: memData.phone, username: memData.username})
-    if(result) {
-        console.log("result is ",result)
-        resp.send({success: true, message: "Login successful"})
+    if(memData.username && memData.password && memData.phone) {
+        const loginMemColl = process.env.loginMemColl;
+        const db = await connection();
+        const collection = db.collection(loginMemColl);
+        let result = await collection.findOne({username: memData.username, password: memData.password});
+        if(result && result.phone == memData.phone) {
+            console.log("result is ",result)
+            resp.send({success: true, message: "Login successful"})
+        }
+        else {
+            console.log("Not login")
+            resp.send({success: false, message: "Login failed"})
+        }
     }
     else {
-        console.log("Not login")
-        resp.send({success: false, message: "Login failed"})
+        resp.send({message: "missing"});
     }
 })
 

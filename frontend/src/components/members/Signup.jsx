@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 export default function Signup() {
     const [memberData, setMemberData] = useState();
     const navigate = useNavigate();
+    const [message, setMessage] = useState("");
 
     async function handleSignupForm(event) {
         event.preventDefault();
@@ -17,12 +18,13 @@ export default function Signup() {
         })
         resp = await resp.json();
         if(resp.success) {
-            console.log("SignIn successful")
+            console.log("SignUp successful")
             navigate("/login")
         }
         else {
-            console.log("SignIn failed")
-            navigate("signup");
+            console.log("SignUp failed")
+            setMessage(resp.message);
+            navigate("/signup");
         }
     }
 
@@ -45,6 +47,19 @@ export default function Signup() {
 
                     <label htmlFor="cnf_pass"> Confirm password: </label>
                     <input type="text" placeholder="Again enter password" name="cnf-password" id="cnf_pass" onChange={(ev) => setMemberData({...memberData, cnf_password: ev.target.value})} />
+
+                    {
+                        message == "missing"
+                            ? <p className="text-red-600 -mt-3 md:-mt-5 text-[11px] md:text-sm"> *Something s missing above </p>
+                        
+                            : message == "not_member"
+                                ? <p className="text-red-600 -mt-3 md:-mt-5 text-[11px] md:text-sm"> *You are not a member, you can't signup. </p>
+
+                            : message == "cnf_pass_fld"
+                                ? <p className="text-red-600 -mt-3 md:-mt-5 text-[11px] md:text-sm"> *Confirmation password is not same. </p>
+                            :
+                                null
+                    }
 
                     <button type="submit"> Sign Up </button>
                 </form>

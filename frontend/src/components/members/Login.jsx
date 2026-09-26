@@ -5,6 +5,8 @@ import { useState } from "react";
 export default function Login() {
     const [memberData, setMemberData] = useState();
     const navigate = useNavigate();
+    const [login, setLogin] = useState(false);
+    const [missing, setMissing] = useState(false);
 
     async function handleLoginForm(event) {
         event.preventDefault();
@@ -16,13 +18,19 @@ export default function Login() {
             }
         })
         response = await response.json();
-        if(response.success) {
-            console.log("Login successful")
-            navigate("/collab");
+        if(response.message != "missing") {
+            if(response.success) {
+                console.log("Login successful")
+                navigate("/collab");
+            }
+            else {
+                console.log("Login failed")
+                setLogin(!login);
+                navigate("/login")
+            }
         }
         else {
-            console.log("Login failed")
-            alert("Login failed");
+            setMissing(!missing);
             navigate("/login")
         }
     }
@@ -40,6 +48,18 @@ export default function Login() {
 
                     <label htmlFor="password"> Enter password: </label>
                     <input type="text" placeholder="Enter your password" name="password" id="password" onChange={(ev) => setMemberData({...memberData, password: ev.target.value})} />
+
+                    {
+                        login && (
+                            <p className="text-red-600 -mt-3 md:-mt-5 text-[11px] md:text-sm"> *Incorrect username or password </p>
+                        )
+                    }
+
+                    {
+                        missing && (
+                            <p className="text-red-600 -mt-3 md:-mt-5 text-[11px] md:text-sm"> *Something s missing above </p>
+                        )
+                    }
 
                     <button type="submit"> Login </button>
                 </form>
