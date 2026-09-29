@@ -37,7 +37,7 @@ export default function Collaborator() {
         else {
             if(resp.success) {
                 console.log("Data stored", resp);
-                navigate("/member/collab");
+                window.location.reload();
             }
             else {
                 console.log("Data not stored", resp);
