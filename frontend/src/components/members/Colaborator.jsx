@@ -5,6 +5,7 @@ import { useState } from "react";
 export default function Collaborator() {
     const [clbrData, setCobrData] = useState();
     const navigate = useNavigate();
+    const [missing, setMissing] = useState(false);
 
     async function handleCollabForm(event) {
         event.preventDefault();
@@ -29,12 +30,18 @@ export default function Collaborator() {
             credentials: "include"
         })
         resp = await resp.json();
-        if(resp.success) {
-            console.log("Data stored")
-            navigate("/member/collab")
+        if(resp.message == "missing") {
+            setMissing(!missing);
+            navigate("/member/collab");
         }
         else {
-            console.log("Data not stored", resp)
+            if(resp.success) {
+                console.log("Data stored", resp);
+                navigate("/member/collab");
+            }
+            else {
+                console.log("Data not stored", resp);
+            }
         }
     }
 
@@ -52,8 +59,17 @@ export default function Collaborator() {
                     <label htmlFor="phone"> Mobile number: </label>
                     <input type="text" placeholder="Enter mobile number" name="phone" id="phone" onChange={(ev) => setCobrData({...clbrData, phone: ev.target.value})} />
 
+                    <label htmlFor="email"> Email: </label>
+                    <input type="text" placeholder="Enter email" name="email" id="email" onChange={(ev) => setCobrData({...clbrData, email: ev.target.value})} />
+
                     <label htmlFor="amount"> Amount: </label>
                     <input type="text" placeholder="Enter amount" name="amount" id="amount" onChange={(ev) => setCobrData({...clbrData, amount: ev.target.value})} />
+
+                    {
+                        missing && (
+                            <p className="text-red-600 -mt-3 md:-mt-5 text-[11px] md:text-sm"> *Something is missing above </p>
+                        )
+                    }
 
                     <button type="submit"> Add collaborator </button>
                 </form>

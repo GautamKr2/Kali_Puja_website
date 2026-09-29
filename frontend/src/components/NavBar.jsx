@@ -31,7 +31,7 @@ export default function NavBar() {
     }, [])
 
     async function handleLogout() {
-        await fetch(`${import.meta.env.API_URL}/logout`, {
+        await fetch(`${import.meta.env.VITE_API_URL}/logout`, {
             method: "post",
             credentials: "include"
         })

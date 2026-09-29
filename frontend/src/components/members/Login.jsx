@@ -65,7 +65,7 @@ export default function Login() {
 
                     {
                         missing && (
-                            <p className="text-red-600 -mt-3 md:-mt-5 text-[11px] md:text-sm"> *Something s missing above </p>
+                            <p className="text-red-600 -mt-3 md:-mt-5 text-[11px] md:text-sm"> *Something is missing above </p>
                         )
                     }
 
