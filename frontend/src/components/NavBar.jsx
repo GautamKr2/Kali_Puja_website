@@ -3,20 +3,42 @@ import { useEffect, useState } from "react";
 
 export default function NavBar() {
     const [menuOpen, setMenuOpen] = useState(false);
-    const [select, setSelect] = useState("user");
     const navigate = useNavigate();
+    const [logout, setLogout] = useState(!!localStorage.getItem("name"));
     
-    /*useEffect(() => {
-        if(select == "member") {
-            navigate("/login")
+    function handleChange(ev) {
+        const value = ev.target.value;
+        if(value === "member") {
+            navigate("/member/login");
         }
-        else if(select == "admin") {
-            navigate("/add-member")
+        else if(value === "admin") {
+            navigate("/admin");
         }
         else {
-            navigate("/")
+            navigate("/");
         }
-    }, [])*/
+    }
+
+    useEffect(() => {
+        function handleStorage() {
+            setLogout(!!localStorage.getItem("name"));
+        }
+        window.addEventListener("localStorage-change", handleStorage);
+
+        return () => {
+            window.removeEventListener("localStorage-change", handleStorage)
+        }
+    }, [])
+
+    async function handleLogout() {
+        await fetch(`${import.meta.env.API_URL}/logout`, {
+            method: "post",
+            credentials: "include"
+        })
+        localStorage.removeItem("name");
+        window.dispatchEvent(new Event("localStorage-change"));
+        navigate("/");
+    }
 
     return (
         <>
@@ -30,7 +52,10 @@ export default function NavBar() {
                     <Link to="/contact" className="nav-link"> Contact Us </Link>
                 </div>
 
-                <select className="absolute right-2 md:right-10 text-[#413e35] border-[1.5px] md:border-2 border-[#f47813] rounded-md px-3 py-[1px] md:py-1 hover:bg-[#f99159]" onChange={(ev) => setSelect(ev.target.value)}>
+                {
+                    logout && (<button className="absolute right-50 md:right-42" onClick={handleLogout}> Logout </button>)
+                }
+                <select className="absolute right-2 md:right-10 text-[#413e35] border-[1.5px] md:border-2 border-[#f47813] rounded-md px-3 py-[1px] md:py-1 hover:bg-[#f99159]" onChange={handleChange}>
                     <option className="bg-[#f7b398]" name="user" value="user"> User </option>
                     <option className="bg-[#f7b398]" name="member" value="member"> Member </option>
                 </select>

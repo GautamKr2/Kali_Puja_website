@@ -20,13 +20,13 @@ export default function Signup() {
         resp = await resp.json();
         if(resp.success) {
             localStorage.setItem("name", memberData.name);
-            console.log("SignUp successful")
-            navigate("/collab")
+            window.dispatchEvent(new Event("localStorage-change"));
+            navigate("/member/collab")
         }
         else {
             console.log("SignUp failed")
             setMessage(resp.message);
-            navigate("/signup");
+            navigate("/member/signup");
         }
     }
 

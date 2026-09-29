@@ -1,12 +1,18 @@
 import { Link, useNavigate } from "react-router-dom";
 import "../../App.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Login() {
     const [memberData, setMemberData] = useState();
     const navigate = useNavigate();
     const [login, setLogin] = useState(false);
     const [missing, setMissing] = useState(false);
+
+    useEffect(() => {
+        if(!!localStorage.getItem("name")) {
+            navigate("/member/collab");
+        }
+    }, [])
 
     async function handleLoginForm(event) {
         event.preventDefault();
@@ -22,18 +28,18 @@ export default function Login() {
         if(response.message != "missing") {
             if(response.success) {
                 localStorage.setItem("name", response.name);
-                console.log("Login successful")
-                navigate("/collab");
+                window.dispatchEvent(new Event("localStorage-change"));
+                navigate("/member/collab");
             }
             else {
                 console.log("Login failed")
                 setLogin(!login);
-                navigate("/login")
+                navigate("/member/login")
             }
         }
         else {
             setMissing(!missing);
-            navigate("/login")
+            navigate("/member/login")
         }
     }
 

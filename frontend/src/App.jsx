@@ -11,6 +11,7 @@ import Login from './components/members/Login'
 import Signup from './components/members/Signup'
 import NavBar from './components/NavBar'
 import { Routes, Route } from 'react-router-dom'
+import Protected from './components/Protected'
 
 function App() {
 
@@ -26,9 +27,11 @@ function App() {
         <Route path="/gallery" element={<Gallery />}/>
         <Route path="/contact" element={<Contact />}/>
 
-        <Route path="/signup" element={<Signup />}/>
-        <Route path="/login" element={<Login />}/>
-        <Route path="/collab" element={<Collaborator />}/>
+        <Route path="/member">
+          <Route path="signup" element={<Signup />}/>
+          <Route path="login" element={<Login />}/>
+          <Route path="collab" element={<Protected> <Collaborator /> </Protected>}/>
+        </Route>
       </Routes>
 
       <Footer />

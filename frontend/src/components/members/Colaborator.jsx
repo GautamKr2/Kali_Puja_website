@@ -31,7 +31,7 @@ export default function Collaborator() {
         resp = await resp.json();
         if(resp.success) {
             console.log("Data stored")
-            navigate("/collab")
+            navigate("/member/collab")
         }
         else {
             console.log("Data not stored", resp)

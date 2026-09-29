@@ -66,7 +66,7 @@ app.post("/signup", async (req, resp) => {
                 if(response.acknowledged) {
                     const { password, cnf_password, ...userData } = mbrData;  // To remove password from memberdata before generating JWT
                     jwt.sign(userData, jwt_secret, {expiresIn: "3d"}, (error, token) => {
-                        resp.cookie("token", token, {
+                        resp.cookie("authToken", token, {
                             httpOnly: true,
                             secure: true,
                             sameSite: 'none',
@@ -107,7 +107,7 @@ app.post("/login", async (req, resp) => {
                     return;
                 }
                 else {
-                    resp.cookie("token", token, {
+                    resp.cookie("authToken", token, {
                         httpOnly: true,
                         secure: false,
                         sameSite: 'lax',
@@ -125,6 +125,11 @@ app.post("/login", async (req, resp) => {
     else {
         resp.send({success: false, message: "missing"});
     }
+})
+
+app.post("/logout", (req, resp) => {
+    resp.clearCookie("authToken");
+    resp.json({success: true, message: "Logout successful"})
 })
 
 function verifyJWTToken(req, resp, next) {
