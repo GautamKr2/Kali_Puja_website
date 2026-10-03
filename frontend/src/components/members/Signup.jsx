@@ -38,7 +38,7 @@ export default function Signup() {
                     <label htmlFor="name"> Name: </label>
                     <input type="text" placeholder="Enter your name" name="name" id="name" onChange={(ev) => setMemberData({...memberData, name: ev.target.value})} />
 
-                    <label htmlFor="phone"> Phone: </label>
+                    <label htmlFor="phone"> Mobile No: </label>
                     <input type="text" placeholder="Enter your mobile number" name="phone" id="phone" onChange={(ev) => setMemberData({...memberData, phone: ev.target.value})} />
 
                     <label htmlFor="username"> Username: </label>
@@ -52,15 +52,18 @@ export default function Signup() {
 
                     {
                         message == "missing"
-                            ? <p className="text-red-600 -mt-3 md:-mt-5 text-[11px] md:text-sm"> *Something s missing above </p>
+                            ? <p className="text-red-600 -mt-3 md:-mt-5 text-[11px] md:text-sm"> *Something is missing above </p>
                         
                             : message == "not_member"
                                 ? <p className="text-red-600 -mt-3 md:-mt-5 text-[11px] md:text-sm"> *You are not a member, you can't signup. </p>
 
                             : message == "cnf_pass_fld"
                                 ? <p className="text-red-600 -mt-3 md:-mt-5 text-[11px] md:text-sm"> *Confirmation password is not same. </p>
-                            :
-                                null
+
+                            : message == "already_signedup"
+                                ? <p className="text-red-600 -mt-3 md:-mt-5 text-[11px] md:text-sm"> *You have already signed up, Please login. </p>
+
+                            :    null
                     }
 
                     <button type="submit"> Sign Up </button>

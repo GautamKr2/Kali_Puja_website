@@ -73,7 +73,7 @@ export default function Login() {
                 </form>
                 <div className="link-container">
                     <p className="link-text"> For new user, click for sign up: </p>
-                    <Link to="/signup" className="link"> Click here </Link>
+                    <Link to="/member/signup" className="link"> Click here </Link>
                 </div>
             </div>
         </>

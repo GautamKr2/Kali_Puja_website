@@ -46,10 +46,12 @@ export default function NavBar() {
             
                 <div className="hidden md:flex gap-16 mr-6">
                     <Link to="/" className="nav-link"> Home </Link>
-                    <Link to="/about" className="nav-link"> About </Link>
+                    {/* <Link to="/about" className="nav-link"> About </Link> */}
+                    <a href="#about" className="nav-link">About</a>
                     <Link to="/members" className="nav-link"> Members </Link>
                     <Link to="/gallery" className="nav-link"> Gallery </Link>
-                    <Link to="/contact" className="nav-link"> Contact Us </Link>
+                    {/* <Link to="/contact" className="nav-link"> Contact Us </Link> */}
+                    <a href="#contact" className="nav-link">Contact Us</a>
                 </div>
 
                 {

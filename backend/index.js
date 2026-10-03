@@ -92,6 +92,11 @@ app.post("/signup", async (req, resp) => {
             if(mbrData.password === mbrData.cnf_password) {
                 const loginMemColl = process.env.loginMemColl;
                 const collection = db.collection(loginMemColl);
+                const existingUser = await collection.findOne({phone: mbrData.phone});
+                if(existingUser) {
+                    resp.send({success: false, message: "already_signedup"});
+                    return;
+                }
                 const response = await collection.insertOne(mbrData);
                 if(response.acknowledged) {
                     const { password, cnf_password, ...userData } = mbrData;  // To remove password from memberdata before generating JWT
