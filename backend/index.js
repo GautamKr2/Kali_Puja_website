@@ -7,6 +7,8 @@ import nodemailer from 'nodemailer';
 
 import cors from 'cors';
 
+import adminRoutes from './routes/adminRoutes.js';
+
 const app = express();
 app.use(express.json());
 
@@ -167,6 +169,11 @@ app.post("/logout", (req, resp) => {
     resp.json({success: true, message: "Logout successful"})
 })
 
+// Admin Routes
+app.use("/admin", adminRoutes);
+
+
+// Function to verify JWT token
 function verifyJWTToken(req, resp, next) {
     const token = req.cookies.authToken;
     jwt.verify(token, jwt_secret, (error, encoded) => {
