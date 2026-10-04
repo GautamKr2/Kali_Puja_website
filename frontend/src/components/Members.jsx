@@ -5,19 +5,19 @@ export default function() {
         {
             id: 1,
             name: "Gautam Kumar",
-            image: "/kali_img.jpeg",
+            image: "/members/gautam.jpg",
             role: "President"
         },
         {
             id: 2,
             name: "Gautam Kumar",
-            image: "/kali_img.jpeg",
+            image: "/members/gautam1.jpg",
             role: "President"
         },
         {
             id: 3,
             name: "Gautam Kumar",
-            image: "/kali_img.jpeg",
+            image: "/members/gautam11.jpg",
             role: "President"
         },
         {

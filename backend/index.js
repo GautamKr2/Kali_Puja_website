@@ -170,7 +170,7 @@ app.post("/logout", (req, resp) => {
 })
 
 // Admin Routes
-app.use("/admin", adminRoutes);
+app.use("/admin", verifyJWTToken, adminRoutes);
 
 
 // Function to verify JWT token

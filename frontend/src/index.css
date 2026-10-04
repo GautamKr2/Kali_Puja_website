@@ -10,6 +10,9 @@
   .list-item {
     @apply bg-[#f6bea8] p-1 border-[1.5px] border-[#f9a685] px-2 my-1;
   }
+  .admin-list-item {
+    @apply w-30 md:w-50 text-center bg-[#f8c7b4] p-1 border-[1.5px] border-[#fdb599] px-2 rounded-md hover:bg-[#f6b6a3] text-[10px] md:text-sm text-[#343434];
+  }
 }
 
 * {

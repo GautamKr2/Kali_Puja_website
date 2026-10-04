@@ -16,6 +16,7 @@ import Signup from './components/members/Signup'
 
 import Protected from './components/Protected'
 
+import AdminSection from './components/admin/adminSection'
 import MemberList from './components/admin/member_list'
 import LoginMember from './components/admin/login_member'
 import CollaboratorsList from './components/admin/collaborators_list'
@@ -41,6 +42,7 @@ function App() {
         </Route>
 
         <Route path="/admin">
+          <Route index element={<AdminSection />}/>
           <Route path="member-list" element={<MemberList />}/>
           <Route path="login-member-list" element={<LoginMember />}/>
           <Route path="collaborators-list" element={<CollaboratorsList />}/>

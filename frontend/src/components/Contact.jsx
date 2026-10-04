@@ -9,6 +9,10 @@ export default function Contact() {
                         <a href="mailto:kalipujasamiti21199@gmail.com" className="text-[12px] md:text-[16px] text-[#043f4e] hover:underline"> kalipujasamiti21199@gmail.com </a> 
                     </div>
                     <div className="flex justify-center items-center">
+                        <span className="text-sm md:text-[20px] text-[#04313d] font-bold mr-2 md:mr-3 -ml-19 md:-ml-24.75"> Instagram: </span>
+                        <a href="https://www.instagram.com/sarbhada_ki_mahakali_?stkn=MW00dHpwa3c4YjByeg==" className="text-[12px] md:text-[16px] text-[#043f4e] hover:underline"> Instagram </a> 
+                    </div>
+                    <div className="flex justify-center items-center">
                         <span className="text-sm md:text-[20px] text-[#04313d] font-bold mr-2 md:mr-3 -ml-19 md:-ml-24.75"> Phone: </span>
                         <a href="tel:+91 9876543210" className="text-[12px] md:text-[16px] text-[#043f4e] hover:underline"> +91 7870520178 </a> 
                     </div>
