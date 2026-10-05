@@ -106,7 +106,7 @@ export default function() {
                     {
                         visibleMembers.map((member) => (
                             <div key={member.id} className=" bg-[#f3c6b4] rounded-lg shadow-md pt-1">
-                                <img src={member.image} alt={`${member.name} profile`} className="mx-auto size-24 md:size-48 rounded-md mt-2 md:mt-4 object-cover" />
+                                <img src={member.image} alt={`${member.name} profile`} className="mx-auto size-28 md:size-48 rounded-md mt-2 md:mt-4 object-cover" />
                                 <div className="text-center m-2">
                                     <h3 className="text-[12px] md:text-[16px] text-[#2f2f2f] font-bold"> {member.name} </h3>
                                     <p className="text-[11px] md:text-[13px]  text-red-700"> {member.role} </p>
