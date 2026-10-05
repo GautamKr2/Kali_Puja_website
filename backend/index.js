@@ -13,7 +13,8 @@ const app = express();
 app.use(express.json());
 
 const allowOrigins = [
-    'http://localhost:5173'
+    'http://localhost:5173',
+    'https://kali-puja-website.vercel.app'
 ]
 app.use(cors({
     origin: allowOrigins,
