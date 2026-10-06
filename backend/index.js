@@ -152,8 +152,8 @@ app.post("/login", async (req, resp) => {
                 else {
                     resp.cookie("authToken", token, {
                         httpOnly: true,
-                        secure: false,
-                        sameSite: 'lax',
+                        secure: true,
+                        sameSite: 'none',  // 'lax' is used for cross-site requests, but it allows sending cookies only for top-level navigations. It is a good balance between security and usability.
                         maxAge: 3 * 24 * 60 * 60 * 1000
                     })
                     resp.send({success: true, message: "Login successful", name: result.name});

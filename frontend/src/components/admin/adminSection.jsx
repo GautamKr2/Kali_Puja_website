@@ -4,13 +4,20 @@ import { useEffect } from "react";
 export default function AdminSection() {
     const navigate = useNavigate();
 
-    function handleAdmin() {
-        if(!localStorage.getItem("name")) {
+    async function handleAdmin() {
+        let response  = await fetch(`${import.meta.env.VITE_API_URL}/admin`, {
+            method: "post",
+            credentials: "include"
+        });
+        response = await response.json();
+        if(!response.success) {
             navigate("/member/login");
         }
-        else if(localStorage.getItem("name") !== "Gautam Kumar") {
-            alert("You are not admin, you can't access this page");
-            navigate("/");
+        else {
+            if(localStorage.getItem("name") !== "Gautam Kumar") {
+                alert("You are not admin, you can't access this page");
+                navigate("/");
+            }
         }
     }
     useEffect(() => {

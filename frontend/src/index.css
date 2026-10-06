@@ -5,10 +5,10 @@
     @apply text-amber-50 font-semibold hover:text-amber-200;
   }
   .list-header {
-    @apply bg-[#f8a584] p-1 border-[1.5px] border-[#f78a5f] px-2;
+    @apply bg-[#f8a584] p-[2px] md:p-1 border-[1.5px] border-[#f78a5f] px-1 md:px-2;
   }
   .list-item {
-    @apply bg-[#f6bea8] p-1 border-[1.5px] border-[#f9a685] px-2 my-1;
+    @apply bg-[#f6bea8] p-[2px] md:p-1 border-[1.5px] border-[#f9a685] px-[2px] md:px-2 my-1;
   }
   .admin-list-item {
     @apply w-30 md:w-50 text-center bg-[#f8c7b4] p-1 border-[1.5px] border-[#fdb599] px-2 rounded-md hover:bg-[#f6b6a3] text-[10px] md:text-sm text-[#343434];
