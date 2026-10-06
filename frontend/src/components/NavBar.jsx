@@ -56,7 +56,7 @@ export default function NavBar() {
 
                 {
                     logout && (
-                        <button className="absolute right-50 md:right-42 text-[#f25525] text-[12px] md:text-[18px] font-semibold bg-red-200 hover:bg-red-300 hover:cursor-pointer px-2 rounded" onClick={handleLogout}> Logout </button>
+                        <button className="absolute w-15 md:w-20 left-8 md:right-42 text-[#f25525] text-[12px] md:text-[18px] font-semibold bg-red-200 hover:bg-red-300 hover:cursor-pointer px-2 rounded" onClick={handleLogout}> Logout </button>
                     )
                 }
                 <select className="absolute right-2 md:right-10 text-[#413e35] border-[1.5px] md:border-2 border-[#f47813] rounded-md px-3 py-[1px] md:py-1 hover:bg-[#f99159]" onChange={handleChange}>

@@ -48,29 +48,34 @@ app.post("/add-collab", verifyJWTToken, async (req, resp) => {
         const response = await collection.insertOne(collData);
 
         if(response.acknowledged) {
-            // Sending email
-            let msg = `Thank you for contributing of ₹ ${collData.amount}. May Maa Kali always bless you. You live long. Have a nice day.`;
-            const transporter = nodemailer.createTransport({
-                service: "gmail",
-                auth: {
-                    user: "kalipujasamiti21199@gmail.com",
-                    pass: process.env.EMAIL_APP_PASS
+            if(collData.email) {
+                // Sending email
+                let msg = `Thank you for contributing of ₹ ${collData.amount}. May Maa Kali always bless you. You live long. Have a nice day.`;
+                const transporter = nodemailer.createTransport({
+                    service: "gmail",
+                    auth: {
+                        user: "kalipujasamiti21199@gmail.com",
+                        pass: process.env.EMAIL_APP_PASS
+                    }
+                })
+                const mailOption = {
+                    from: "kalipujasamiti21199@gmail.com",
+                    to: collData.email,
+                    subject: "Kali Puja Samiti, Khushahalpur",
+                    text: msg
                 }
-            })
-            const mailOption = {
-                from: "kalipujasamiti21199@gmail.com",
-                to: collData.email,
-                subject: "Kali Puja Samiti, Khushahalpur",
-                text: msg
+                transporter.sendMail(mailOption, (error, info) => {
+                    if(error) {
+                        resp.json({success: false, message: "Mail not sent"});
+                    }
+                    else {
+                        resp.json({success: true, message: "Mail sent, and data inserted"});
+                    }
+                })
             }
-            transporter.sendMail(mailOption, (error, info) => {
-                if(error) {
-                    resp.json({success: false, message: "Mail not sent"});
-                }
-                else {
-                    resp.json({success: true, message: "Mail sent, and data inserted"});
-                }
-            })
+            else {
+                resp.send({success: true, message: "Data inserted"});
+            }
         }
         else {
             resp.send({success: false, message: "Data not inserted"});
