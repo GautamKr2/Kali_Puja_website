@@ -180,7 +180,7 @@ app.use("/admin", verifyJWTToken, adminRoutes);
 
 
 // Function to verify JWT token
-function verifyJWTToken(req, resp, next) {
+export default function verifyJWTToken(req, resp, next) {
     const token = req.cookies.authToken;
     jwt.verify(token, jwt_secret, (error, encoded) => {
         if(error) {

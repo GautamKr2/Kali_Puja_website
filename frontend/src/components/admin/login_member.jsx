@@ -4,7 +4,9 @@ export default function LoginMember() {
     const [signInMembers, setSignInMembers] = useState();
 
     const fetchSignedInMembers = async () => {
-        let response = await fetch(`${import.meta.env.VITE_API_URL}/admin/signed-members`);
+        let response = await fetch(`${import.meta.env.VITE_API_URL}/admin/signed-members`, {
+            credentials: "include"
+        });
         let data = await response.json();
         if(data.success) {
             setSignInMembers(data.list);

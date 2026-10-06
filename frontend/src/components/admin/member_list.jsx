@@ -4,7 +4,9 @@ export default function MemberList() {
     const [members, setMembers] = useState();
 
     const fetchMembers = async () => {
-        let response = await fetch(`${import.meta.env.VITE_API_URL}/admin/members-list`);
+        let response = await fetch(`${import.meta.env.VITE_API_URL}/admin/members-list`, {
+            credentials: "include"
+        });
         let data = await response.json();
         if(data.success) {
             setMembers(data.list);

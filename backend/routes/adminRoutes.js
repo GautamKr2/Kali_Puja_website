@@ -6,7 +6,7 @@ import { collaboratorsList } from "../controller/admin/collaboratorsList.js";
 
 const router = express.Router();
 
-router.get("/members-list", memberList)
+router.get("/members-list",  memberList)
 router.get("/signed-members", signedMemberList)
 router.get("/collaborators-list", collaboratorsList)
 

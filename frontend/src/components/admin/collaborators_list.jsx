@@ -4,7 +4,9 @@ export default function CollaboratorsList() {
     const [collaborators, setCollaborators] = useState();
 
     const fetchCollaborators = async () => {
-        let response = await fetch(`${import.meta.env.VITE_API_URL}/admin/collaborators-list`);
+        let response = await fetch(`${import.meta.env.VITE_API_URL}/admin/collaborators-list`, {
+            credentials: "include"
+        });
         let data = await response.json();
         if(data.success) {
             setCollaborators(data.list);
