@@ -63,6 +63,11 @@ export default function NavBar() {
                     <option> Select </option>
                     <option className="bg-[#f7b398]" name="user" value="user"> User </option>
                     <option className="bg-[#f7b398]" name="member" value="member"> Member </option>
+                    {
+                        logout && (
+                            <option className="bg-[#f7b398]" name="admin" value="admin"> Admin </option>
+                        )
+                    }
                 </select>
 
                 <button className="mr-5 md:hidden text-[20px]" onClick={() => setMenuOpen(!menuOpen)}> ☰ </button>
