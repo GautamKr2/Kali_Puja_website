@@ -50,7 +50,7 @@ app.post("/add-collab", verifyJWTToken, async (req, resp) => {
         if(response.acknowledged) {
             if(collData.email) {
                 // Sending email
-                let msg = `Thank you for contributing of ₹ ${collData.amount}. May Maa Kali always bless you. You live long. Have a nice day.`;
+                let msg = `Thank you for contributing of ₹ ${collData.amount}. May Maa Kali always bless you. You live long. Have a nice day.\n\nRegards: Kali Puja Samiti, Khushahalpur`;
                 const transporter = nodemailer.createTransport({
                     service: "gmail",
                     auth: {
@@ -66,10 +66,10 @@ app.post("/add-collab", verifyJWTToken, async (req, resp) => {
                 }
                 transporter.sendMail(mailOption, (error, info) => {
                     if(error) {
-                        resp.json({success: false, message: "Mail not sent"});
+                        resp.send({success: false, message: "Mail not sent"});
                     }
                     else {
-                        resp.json({success: true, message: "Mail sent, and data inserted"});
+                        resp.send({success: true, message: "Mail sent, and data inserted"});
                     }
                 })
             }
@@ -172,7 +172,7 @@ app.post("/login", async (req, resp) => {
 
 app.post("/logout", (req, resp) => {
     resp.clearCookie("authToken");
-    resp.json({success: true, message: "Logout successful"})
+    resp.send({success: true, message: "Logout successful"})
 })
 
 // Admin Routes
