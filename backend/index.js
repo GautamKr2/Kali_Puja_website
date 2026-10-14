@@ -4,8 +4,8 @@ import "dotenv/config";
 import jwt from "jsonwebtoken";
 import cookieParser from 'cookie-parser';
 import nodemailer from 'nodemailer';
-
 import cors from 'cors';
+import { Resend } from 'resend';
 
 import adminRoutes from './routes/adminRoutes.js';
 
@@ -191,6 +191,40 @@ export default function verifyJWTToken(req, resp, next) {
         }
     })
 }
+
+const resend = new Resend(process.env.RESEND_API_KEY);
+app.get("/test-mail", async (req, resp) => {
+    try {
+        const { data, error } = await resend.emails.send({
+            from: "Kali Puja Samiti <onboarding@resend.dev>",
+            to: ["gautamkumar11008@gmail.com"],
+            subject: "Thank you for your contribution",
+            text: "Hello! Resend email integration is working."
+        });
+
+        if (error) {
+            console.error(error);
+            return resp.status(400).json({
+                success: false,
+                message: "Email send failed",
+                error
+            });
+        }
+
+        return resp.json({
+            success: true,
+            message: "Email request accepted by Resend",
+            id: data.id
+        });
+    }
+    catch (error) {
+        console.error(error);
+        return resp.status(500).json({
+            success: false,
+            message: "Server error"
+        });
+    }
+})
 
 const PORT = process.env.PORT || 3200;
 
